@@ -9,6 +9,10 @@ WORKDIR /
 
 COPY ./streamlit/ /streamlit/
 
+COPY ../src/data/ /src/data/
+
+COPY .streamlit/secrets.toml /secrets.toml
+
 # COPY ../apis.py ../schemas.py ../requirements.txt ../metadata.db ../aws_logging.py /app/
 
 # COPY ../Authentication /app/Authentication
@@ -19,8 +23,8 @@ ENV JWT_SECRET='damg_7225_big_data'
 ENV DbGeo='/fastapi/data/GEOSPATIAL_DATA.db'
 ENV DbPath='/fastapi/data'
 ENV DbUser='/fastapi/data/USER_DATA.db'
-ENV AWS_ACCESS_KEY_ID = "AKIA3EJL4FYTQOGZWUOB"
-ENV AWS_SECRET_ACCESS_KEY = "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"
+ENV AWS_ACCESS_KEY_ID = "AKIA3EJL4FYTZQZZCKXN"
+ENV AWS_SECRET_ACCESS_KEY = "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"
 ENV LOG_GROUP_NAME = "damg7245_Assignment1"
 ENV LOG_STREAM_NAME_AWS = "aws_services"
 ENV LOG_STREAMLIT_NAME = "streamlit_ui"
