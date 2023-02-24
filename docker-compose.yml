@@ -1,12 +1,25 @@
 version: "3.9"
 services:
   fastapi:
-    build: ./src/fastapi
+
+    build:
+      context: .
+      dockerfile: src/fastapi/Dockerfile
     ports:
-      - "8000:80"
+      - "8080:80"
+    networks:
+      - my-external
 
   streamlit:
-    build: ./streamlit
+    build:
+      context: .
+      dockerfile: streamlit/Dockerfile
     ports:
-      - "8081:8081"
-    
+      - "8081:8501"
+    env_file:
+      - .env
+    networks:
+      - my-external
+networks:
+  my-external:
+    driver: bridge

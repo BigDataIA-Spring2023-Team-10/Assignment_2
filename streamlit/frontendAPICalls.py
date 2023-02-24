@@ -2,7 +2,7 @@ import requests
 import re
 
 #USER REGISTRATION
-URL = 'http://localhost:8000' 
+URL = 'http://host.docker.internal:8000' 
 
 def api_userRegistration(username, password):
     

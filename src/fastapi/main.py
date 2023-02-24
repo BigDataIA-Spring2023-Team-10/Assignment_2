@@ -4,9 +4,9 @@ from typing import Optional
 from datetime import datetime, timedelta
 from typing import Union
 from fastapi import Depends, FastAPI, HTTPException, status
-from .user_auth import AuthHandler
-from .database_util import database_methods
-from .aws_s3_copy import s3_copy
+from user_auth import AuthHandler
+from database_util import database_methods
+from aws_s3_copy import s3_copy
 import os
 from dotenv import load_dotenv
 
@@ -95,7 +95,6 @@ def goes_year(year:int, month:int, day:int,username=Depends(auth_handler.auth_wr
 def goes_year(username=Depends(auth_handler.auth_wrapper)):
     return db_method.get_nexrad_sites()
 
-<<<<<<< HEAD
 @app.get('/copy_file_s3/{source_bucket_name}/{product}/{year}/{day}/{hour}/{filename}',status_code=status.HTTP_200_OK)
 def copy_file_s3(source_bucket_name:str,product:str,year,day,hour,filename:str,username=Depends(auth_handler.auth_wrapper)):
     file = f'{product}/{year}/{day}/{hour}/{filename}'
@@ -125,3 +124,11 @@ def copy_file_s3(year, month, day, site,username=Depends(auth_handler.auth_wrapp
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid request')
     else:
         return file_prefix
+
+@app.get("/healthz",status_code=status.HTTP_200_OK)
+def hello():
+    return {"status": "connected"}
+
+@app.get("/",status_code=status.HTTP_200_OK)
+def hello():
+    return {"status": "connected"}

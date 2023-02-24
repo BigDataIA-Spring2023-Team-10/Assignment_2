@@ -4,10 +4,10 @@ FROM python:3.10.6
 RUN pip install --upgrade pip
 # Upgrade pip package
 
-WORKDIR /streamlit
+WORKDIR /
 # Change working dir to app
 
-COPY . .
+COPY ./streamlit/ /streamlit/
 
 # COPY ../apis.py ../schemas.py ../requirements.txt ../metadata.db ../aws_logging.py /app/
 
@@ -26,11 +26,10 @@ ENV LOG_STREAM_NAME_AWS = "aws_services"
 ENV LOG_STREAMLIT_NAME = "streamlit_ui"
 ENV BUCKET_NAME = "damg7245-s3-storage"
 
-RUN pip install -r ./requirements.txt
-
-EXPOSE 8081
+RUN pip install -r ./streamlit/requirements.txt
+WORKDIR /streamlit/
+EXPOSE 8501
 ## Expose a port inside the container on which services run
 #
-#CMD ["gunicorn" ,"-w", "4", "-k", "uvicorn.workers.UvicornWorker" , "--bind", "0.0.0.0:8000", "apis:app"]
-CMD ["python3", "/streamlit/streamlit/streamlit run Home.py"]
+CMD ["streamlit", "run", "Home.py"]
 # gunicorn command to run the service with 4 worker nodes binding localhost/0.0.0.0 on port 8000 refering app inside the main.py
