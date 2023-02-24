@@ -6,15 +6,15 @@ from frontendAPICalls import *
 
 current_directory = os.getcwd()
 
-module_directory = os.path.abspath(os.path.join(current_directory, 'src', 'data'))
-module_path = os.path.join(module_directory, 'sqlite_main.py')
+module_directory = os.path.abspath(os.path.join(current_directory, 'streamlit', 'data'))
+# module_path = os.path.join(module_directory, 'sqlite_main.py')
 ops_path = os.path.join(module_directory, 'backend_ops.py')
 
-spec = importlib.util.spec_from_file_location("sqlite_main", module_path)
+# spec = importlib.util.spec_from_file_location("sqlite_main", module_path)
 spec_ops = importlib.util.spec_from_file_location("backend_ops", ops_path)
-db_methods = importlib.util.module_from_spec(spec)
+# db_methods = importlib.util.module_from_spec(spec)
 ops = importlib.util.module_from_spec(spec_ops)
-spec.loader.exec_module(db_methods)
+# spec.loader.exec_module(db_methods)
 spec_ops.loader.exec_module(ops)
 
 AWS_ACCESS_KEY_ID = st.secrets["AWS_ACCESS_KEY_ID"]
