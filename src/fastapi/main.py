@@ -4,17 +4,12 @@ from typing import Optional
 from datetime import datetime, timedelta
 from typing import Union
 from fastapi import Depends, FastAPI, HTTPException, status
-<<<<<<< HEAD
 from .user_auth import AuthHandler
 from .database_util import database_methods
 from .aws_s3_copy import s3_copy
 import os
 from dotenv import load_dotenv
-=======
-from user_auth import AuthHandler
-from database_util import database_methods
-from aws_s3_copy import s3_copy
->>>>>>> e7335f0baeb1ba9a9c3e0cf5fcf2a4ca0e397d16
+
 
 app = FastAPI()
 auth_handler = AuthHandler()
@@ -130,22 +125,3 @@ def copy_file_s3(year, month, day, site,username=Depends(auth_handler.auth_wrapp
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid request')
     else:
         return file_prefix
-=======
-@app.get('/copy_file_s3/{source_bucket_name}/{key}',status_code=status.HTTP_200_OK)
-def copy_file_s3(source_bucket_name:str,key:str,username=Depends(auth_handler.auth_wrapper)):
-    status_copy=copy_obj.copy_file_into_s3(source_bucket_name,key)
-    if status_copy == False:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid request')
-    
-@app.get("/healthz",status_code=status.HTTP_200_OK)
-def hello():
-    return {"status": "connected"}
-
-@app.get("/",status_code=status.HTTP_200_OK)
-def hello():
-    return {"status": "connected"}
-    
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
->>>>>>> e7335f0baeb1ba9a9c3e0cf5fcf2a4ca0e397d16

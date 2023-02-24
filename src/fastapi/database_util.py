@@ -1,11 +1,8 @@
 import sqlite3
 import json
-<<<<<<< HEAD
 import boto3
-=======
 from dotenv import load_dotenv
 import os
->>>>>>> e7335f0baeb1ba9a9c3e0cf5fcf2a4ca0e397d16
 
 load_dotenv()
 class database_methods():
