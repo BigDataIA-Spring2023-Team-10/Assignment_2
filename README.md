@@ -14,14 +14,6 @@
 
 
 
-# Application link
-
-[Live Application Page](https://bigdataia-spring2023-team-10-assignment-1-streamlithome-t6rxsk.streamlit.app/) :rocket:
-
-
-
-
-
 # Process Outline
 
 1. Data Fetching using FastAPI 
@@ -38,7 +30,7 @@
 ## How to use  this project:
 
 
-1. Clone this repo locally `git clone <repo-url>`
+1. Use Main2 branch to Clone the repo locally `git clone <repo-url>`
 
 2. Setup the local python enviornment.
 
